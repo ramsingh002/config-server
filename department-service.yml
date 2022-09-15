@@ -42,4 +42,4 @@ spring:
 #====================================================================================================#    
 department:
   my:
-    test: UPDATE_DEPRTMENT_RAM_TEST_67890
+    test: CHANGE_VALUE_UPDATE
