@@ -1,0 +1,45 @@
+
+#====================================================================================================#
+#                                           SERVER - INFO                                            #
+#====================================================================================================#
+server:
+  port: ${SERVER_PORT:8082}
+
+#====================================================================================================#
+#                                           EUREKA SERVER - INFO                                     #
+#====================================================================================================#
+#eureka:
+#  instance:
+#    hostname: ${HOST_NAME:localhost}
+#  client:
+#    fetch-registry: ${FETCH_REGISTRY:true}
+#    register-with-eureka: ${REGISTER_WITH_EUREKA:true}
+#    service-url: 
+#      defaultZone: ${SERVICE_URL:http://${eureka.instance.hostname}:8761/eureka/}
+        
+#====================================================================================================#
+#                                     DATABSE / HIBERNATE-JPA - INFO                                 #
+#====================================================================================================#
+spring:
+  application:
+    name: ${APP_NAME:DEPARTMENT-SERVICE}
+  datasource:
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3306/daily_code_buffer}
+    driver-class-name: ${DRIVER_NAME:com.mysql.cj.jdbc.Driver}
+    username: ${DATABAE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:root}
+  jpa:
+    properties:
+      hibernate:
+        dialect: ${JPA_DIALECT:org.hibernate.dialect.MySQL8Dialect}
+        format_sql: ${JPA_FORMAT_SQL:true}
+    hibernate:
+      ddl-auto: ${JPA_DDL:update}
+    show-sql: ${JPA_SHOW_SQL:true}  
+        
+#====================================================================================================#
+#                                    VALUE TEST - INFO                                 #
+#====================================================================================================#    
+department:
+  my:
+    test: DEPRTMENT_RAM_TEST_67890
