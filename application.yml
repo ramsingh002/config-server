@@ -1,8 +1,11 @@
+#====================================================================================================#
+#                                           EUREKA SERVER - INFO                                     #
+#====================================================================================================#
 eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true    
-    service-url:
-      defaultZone:  http://localhost:8761/eureka
   instance:
-      hostname: localhost
+    hostname: ${HOST_NAME:localhost}
+  client:
+    fetch-registry: ${FETCH_REGISTRY:true}
+    register-with-eureka: ${REGISTER_WITH_EUREKA:true}
+    service-url: 
+      defaultZone: ${SERVICE_URL:http://${eureka.instance.hostname}:8761/eureka/}
