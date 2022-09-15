@@ -42,4 +42,4 @@ spring:
 #====================================================================================================#    
 department:
   my:
-    test: CHANGE_VALUE_UPDATE
+    test: UPDATE_CHANGE_VALUE_13579
