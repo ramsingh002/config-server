@@ -1,0 +1,84 @@
+
+#====================================================================================================#
+#                                           SERVER - INFO                                            #
+#====================================================================================================#
+server:
+  port: ${SERVER_PORT:8081}
+
+
+#====================================================================================================#
+#                                           EUREKA SERVER - INFO                                     #
+#====================================================================================================#
+#eureka:
+#  instance:
+#    hostname: ${HOST_NAME:localhost}
+#  client:
+#    fetch-registry: ${FETCH_REGISTRY:true}
+#    register-with-eureka: ${REGISTER_WITH_EUREKA:true}
+#    service-url: 
+#      defaultZone: ${SERVICE_URL:http://${eureka.instance.hostname}:8761/eureka/}
+      
+#====================================================================================================#
+#                                     DATABSE / HIBERNATE-JPA - INFO                                 #
+#====================================================================================================#
+spring:
+  application:
+    name: ${APP_NAME:USER-SERVICE}
+  datasource:
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3306/daily_code_buffer}
+    driver-class-name: ${DRIVER_NAME:com.mysql.cj.jdbc.Driver}
+    username: ${DATABAE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:root}
+  jpa:
+    properties:
+      hibernate:
+        dialect: ${JPA_DIALECT:org.hibernate.dialect.MySQL8Dialect}
+        format_sql: ${JPA_FORMAT_SQL:true}
+    hibernate:
+      ddl-auto: ${JPA_DDL:update}
+    show-sql: ${JPA_SHOW_SQL:true}  
+
+
+#====================================================================================================#
+#                                     DEPARTMENT-SERVICE URL - INFO                                  #
+#====================================================================================================#    
+#department:
+#  url: http://DEPARTMENT-SERVICE
+  #url: http://localhost:8082
+
+    
+#====================================================================================================#
+#                                     RESILIENCE4j - CIRCUIT BREAKER - INFO                          #
+#====================================================================================================#
+
+# Actuator 
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+        - health      
+  endpoint:
+    health:
+      show-details: always 
+      
+# Circuit Breaker
+resilience4j:
+  circuitbreaker:
+    instances:
+      departmentService:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+
+        
+        
