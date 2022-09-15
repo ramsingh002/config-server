@@ -9,3 +9,10 @@ eureka:
     register-with-eureka: ${REGISTER_WITH_EUREKA:true}
     service-url: 
       defaultZone: ${SERVICE_URL:http://${eureka.instance.hostname}:8761/eureka/}
+      
+department:
+  url: http://DEPARTMENT-SERVICE
+  
+my:
+  test:
+    url: MY_RAM_TEST
