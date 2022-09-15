@@ -1,0 +1,51 @@
+
+#====================================================================================================#
+#                                           SERVER - INFO                                            #
+#====================================================================================================#
+server:
+  port: ${SERVER_PORT:8080}
+
+#====================================================================================================#
+#									EUREKA SERVER - INFO	  					                     #
+#====================================================================================================#
+#eureka:
+#  instance:
+#    hostname: ${HOST_NAME:localhost}
+#  client:
+#    fetch-registry: ${FETCH_REGISTRY:true}
+#    register-with-eureka: ${REGISTER_WITH_EUREKA:true}
+#    service-url: 
+#      defaultZone: ${SERVICE_URL:http://${eureka.instance.hostname}:8761/eureka/}
+      
+#====================================================================================================#
+#                        AUTOMATIC MAPPING OF GATEWAY ROUTES - INFO	                                 #
+#====================================================================================================# 
+#spring:
+#  application:
+#    name: ${APP_NAME:API-GATEWAY}
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+          
+#====================================================================================================#
+#                        MANUALLY CONFIGURING API GATEWAY ROUTES - INFO                              #
+#====================================================================================================# 
+spring:
+  application:
+    name: ${APP_NAME:API-GATEWAY}
+  cloud:
+    gateway:
+      routes:
+      - id: USER-SERVICE
+        uri: lb://USER-SERVICE
+        predicates:
+        - Path=/user/**
+      - id: DEPARTMENT-SERVICE
+        uri: lb://DEPARTMENT-SERVICE
+        predicates:
+        - Path=/department/** 
+        
+        
